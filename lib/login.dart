@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numen_health/background.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'otp_screen.dart';
+
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,12 +22,41 @@ class _LoginScreenState extends State<LoginScreen> {
   // AuthCredential? _phoneAuthCredential;
   String? _verificationId;
   int? _code;
+  late String _verificationCode;
 
   @override
   void initState() {
     super.initState();
     // _getFirebaseUser();
   }
+
+  // _verifyPhone() async {
+  //   await FirebaseAuth.instance.verifyPhoneNumber(
+  //       phoneNumber: '+91${_phoneNumberController?.text}',
+  //       verificationCompleted: (PhoneAuthCredential credential) async {
+  //         await FirebaseAuth.instance
+  //             .signInWithCredential(credential)
+  //             .then((value) async {
+  //           if (value.user != null) {
+  //             // setPassword( value.user!.uid);
+  //           }
+  //         });
+  //       },
+  //       verificationFailed: (FirebaseAuthException e) {
+  //         print(e.message);
+  //       },
+  //       codeSent: (String verficationID, int? resendToken) {
+  //         setState(() {
+  //           _verificationCode = verficationID;
+  //         });
+  //       },
+  //       codeAutoRetrievalTimeout: (String verificationID) {
+  //         setState(() {
+  //           _verificationCode = verificationID;
+  //         });
+  //       },
+  //       timeout: const Duration(seconds: 120));
+  // }
 
   @override
   void dispose() {
@@ -115,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         textColor: Colors.grey[50],
                         fontSize: 14.0);
                   } else {
+                    // _verifyPhone();
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OTPScreenn(
                               phoneNumber: _phoneNumberController?.text ?? '',
